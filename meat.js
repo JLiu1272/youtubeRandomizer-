@@ -19,13 +19,23 @@ function getRandomLink(randomArray) {
 document.addEventListener('DOMContentLoaded', function() {
     console.log("on load has been called from meat.js");
     alert(getRandomLink(["https://www.youtube.com/","http://www.you.com"]));
+    getDuration("9bZkp7q19f0",function(duration){
+    	alert(duration);
+    })
 
-
-$.ajax({
-  url: "https://www.googleapis.com/youtube/v3/videos?id=9bZkp7q19f0&part=contentDetails&key="+applicationID,
-  
-}).done(function(data) {
-  alert("respone  "+data.items[0].contentDetails.duration);
-});
 
 }, false);
+
+function getDuration(videoID,callBack){
+
+$.ajax({
+  url: "https://www.googleapis.com/youtube/v3/videos?id="+videoID+"&part=contentDetails&key="+applicationID,
+  
+}).done(function(data) {
+  // alert("respone  "+data.items[0].contentDetails.duration);
+  var unFormattedDuration = data.items[0].contentDetails.duration;
+  var durationInSeconds = moment.duration('PT15M33S').asSeconds();
+  callBack(durationInSeconds);
+});
+
+}
