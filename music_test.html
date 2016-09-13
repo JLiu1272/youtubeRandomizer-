@@ -1,27 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript" src="meat.js">
-	
-</script>
-	<script type = "text/javascript" 
-         src = "http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript" src="meat.js"></script>
+<script type = "text/javascript" src = "http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 
 </head>
 <body>
 
-<input type="text" id="link_id" value="Type Link URL">
+<textarea id="textarea_id" rows="4" cols="50">Input Youtube Link</textarea>
 
 <button onclick="myFunction()">Submit Link</button>
 
-<script>
-function myFunction() {
+<script "text/javascript">
+function myFunction(){
 	var links = Array();
-	inputValue = document.getElementById('link_id').value;
-	links.push(inputValue);
-    alert(links[0]);
+	var inputLines = $('textarea_id').val().split('\n');
+	for(var i = 0; i < inputLines.length; i++){
+		links.push(inputLines[i]);
+	}
+	alert("Hi");
 }
+/*function myFunction() {
+	var links = Array();
+	var inputLines = document.getElementById('textareaId').val().split('\n');
+	for(var i = 0; i < inputLines.length; i++){
+		links.push(inputLines[i]);
+	}
+	alert(inputLines);
+}*/
 </script>
 
 </body>
