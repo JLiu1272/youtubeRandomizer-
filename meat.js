@@ -22,12 +22,14 @@ document.addEventListener('DOMContentLoaded', function() {
     getDuration("9bZkp7q19f0",function(duration){
     	alert(duration);
     })
-
-
 }, false);
 
-function getDuration(videoID,callBack){
 
+/*
+callback to get duration of video by providing video id. 
+It calls back with the duration of the video in seconds
+*/
+function getDuration(videoID,callBack){
 $.ajax({
   url: "https://www.googleapis.com/youtube/v3/videos?id="+videoID+"&part=contentDetails&key="+applicationID,
   
