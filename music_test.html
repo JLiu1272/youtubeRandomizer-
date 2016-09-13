@@ -33,11 +33,8 @@ function myFunction(){
 
 	var totalDuration = getDuration(video_id,
 		function(duration){
-			console.log("calling");
-			console.log(duration);
 			var openLink = appendTimeToURL(singleLink,duration);
-			console.log(openLink);
-			w.location = openLink;
+			window.open(oepnLink);
 		}
 	)
 }
