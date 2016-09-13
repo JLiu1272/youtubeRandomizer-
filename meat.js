@@ -39,5 +39,15 @@ $.ajax({
   var durationInSeconds = moment.duration('PT15M33S').asSeconds();
   callBack(durationInSeconds);
 });
+}
 
+/*
+returns url that appends a random time, based on the length of the video.
+This link can be opened in a browser
+*/
+function appendTimeToURL(videoURL,videoDuration){
+
+	var randomTime =   Math.floor(Math.random() * (videoDuration  + 1)) ;
+	videoURL = videoURL + "&t=" + randomTime;
+	return videoURL;
 }
