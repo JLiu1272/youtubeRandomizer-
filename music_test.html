@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<input type="text" id="link_id" value="Type Link URL">
+
+<button onclick="myFunction()">Submit Link</button>
+
+<script>
+function myFunction() {
+	var links = Array();
+	inputValue = document.getElementById('link_id').value;
+	links.push(inputValue);
+    alert(links[0]);
+}
+</script>
+
+</body>
+</html>
