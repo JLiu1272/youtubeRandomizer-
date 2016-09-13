@@ -36,7 +36,7 @@ $.ajax({
 }).done(function(data) {
   // alert("respone  "+data.items[0].contentDetails.duration);
   var unFormattedDuration = data.items[0].contentDetails.duration;
-  var durationInSeconds = moment.duration('PT15M33S').asSeconds();
+  var durationInSeconds = moment.duration(unFormattedDuration).asSeconds();
   callBack(durationInSeconds);
 });
 }
