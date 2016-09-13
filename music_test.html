@@ -12,14 +12,16 @@
 
 <button onclick="myFunction()">Submit Link</button>
 
-<script "text/javascript">
+<p id="demo"></p>
+
+<script>
 function myFunction(){
 	var links = Array();
-	var inputLines = $('textarea_id').val().split('\n');
-	for(var i = 0; i < inputLines.length; i++){
-		links.push(inputLines[i]);
+	var str = document.getElementById("textarea_id").value;
+	var res = str.split("\n");
+	for(var i = 0; i < res.length; i++){
+		links.push(res[i]);
 	}
-	alert("Hi");
 }
 /*function myFunction() {
 	var links = Array();
