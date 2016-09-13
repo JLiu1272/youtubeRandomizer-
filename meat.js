@@ -18,9 +18,9 @@ function getRandomLink(randomArray) {
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log("on load has been called from meat.js");
-    alert(getRandomLink(["https://www.youtube.com/","http://www.you.com"]));
+    // alert(getRandomLink(["https://www.youtube.com/","http://www.you.com"]));
     getDuration("9bZkp7q19f0",function(duration){
-    	alert(duration);
+    	// alert(duration);
     })
 }, false);
 
