@@ -15,8 +15,10 @@
 <p id="demo"></p>
 
 <script>
+var w = null;
 function myFunction(){
-				w = window.open("",'_blank','width=5,height=5');
+	if(w == null)
+	w = window.open("",'customName','width=5,height=5');
 
 	var links = Array();
 	var str = document.getElementById("textarea_id").value;
