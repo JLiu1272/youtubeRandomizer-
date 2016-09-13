@@ -25,7 +25,7 @@ $.ajax({
   url: "https://www.googleapis.com/youtube/v3/videos?id=9bZkp7q19f0&part=contentDetails&key="+applicationID,
   
 }).done(function(data) {
-  alert("respone"+data);
+  alert("respone  "+data.items[0].contentDetails.duration);
 });
 
 }, false);
