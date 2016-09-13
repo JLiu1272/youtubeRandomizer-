@@ -49,5 +49,6 @@ function appendTimeToURL(videoURL,videoDuration){
 
 	var randomTime =   Math.floor(Math.random() * (videoDuration  + 1)) ;
 	videoURL = videoURL + "&t=" + randomTime;
+	console.log("video url is " +videoURL);
 	return videoURL;
 }
