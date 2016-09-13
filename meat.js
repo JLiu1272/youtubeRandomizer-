@@ -1,6 +1,6 @@
 
 
-
+var applicationID = "AIzaSyA0rqYpyxLJJxVBQpiMK2AVachABWYo3WE"
 /*
 
 function to get one of the links from the array supplied randomly
@@ -22,10 +22,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 $.ajax({
-  url: "https://www.google.com",
-  context: document.body
-}).done(function() {
-  $( this ).addClass( "done" );
+  url: "https://www.googleapis.com/youtube/v3/videos?id=9bZkp7q19f0&part=contentDetails&key="+applicationID,
+  
+}).done(function(data) {
+  alert("respone"+data);
 });
 
 }, false);
