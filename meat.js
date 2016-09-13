@@ -19,4 +19,13 @@ function getRandomLink(randomArray) {
 document.addEventListener('DOMContentLoaded', function() {
     console.log("on load has been called from meat.js");
     alert(getRandomLink(["https://www.youtube.com/","http://www.you.com"]));
+
+
+$.ajax({
+  url: "https://www.google.com",
+  context: document.body
+}).done(function() {
+  $( this ).addClass( "done" );
+});
+
 }, false);
