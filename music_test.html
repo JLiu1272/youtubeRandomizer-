@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<textarea id="textarea_id" rows="4" cols="50">Input Youtube Link</textarea>
+<textarea id="textarea_id" rows="4" cols="50">https://www.youtube.com/watch?v=tb2GZ3Bh4p8</textarea>
 
 <button onclick="myFunction()">Submit Link</button>
 
@@ -28,9 +28,10 @@ function myFunction(){
 	if(ampersandPosition != -1) {
   		video_id = video_id.substring(0, ampersandPosition);
 	}
-	var totalDuration = getDuration(video_id,
+	document.getElementById("demo").innerHTML = video_id;
+	getDuration(video_id,
 		function(duration){
-			var openLink = appendTimeToURL(singleLink,totalDuration)
+			var openLink = appendTimeToURL(singleLink,duration)
 			window.open(openLink,'_blank')
 		}
 	)
