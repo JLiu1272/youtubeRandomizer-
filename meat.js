@@ -6,7 +6,7 @@ var applicationID = "AIzaSyA0rqYpyxLJJxVBQpiMK2AVachABWYo3WE"
 function to get one of the links from the array supplied randomly
 usage:
 getRandomLink(["https://www.youtube.com/","http://www.you.com"]
-will return the string containing on of the urls that were supplied to it
+will return the string containing one of the urls that were supplied to it
 
 */
 function getRandomLink(randomArray) {
