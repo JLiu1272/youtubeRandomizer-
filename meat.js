@@ -88,7 +88,7 @@ This link can be opened in a browser
 function appendTimeToURL(videoURL,videoDuration){
 
 	var randomTime =   Math.floor(Math.random() * (videoDuration  + 1)) ;
-	videoURL = videoURL + "&t=" + randomTime;
+	videoURL = videoURL + "?start=" + randomTime + "&autoplay=1";
 	console.log("video url is " +videoURL);
 	return videoURL;
 }
