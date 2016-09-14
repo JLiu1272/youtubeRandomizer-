@@ -9,56 +9,81 @@
 <body>
 
 <script>
-/*Splits the textbox input into individual links and append
-  input onto a new array
-  Return: An array filled with video links*/
-function appendLinksToArray(){
-	var links = Array();
-	var str = document.getElementById("textarea_id").value;
-	var res = str.split("\n");
-	for(var i = 0; i < res.length; i++){
-		if()
-		links.push(res[i]);
-	}
-	return links;
-}
 
-/*
-  Gets video ID and returns video ID
-*/
-function getVid_ID(singleLink){
-	var video_id = singleLink.split('v=')[1];
-	var ampersandPosition = video_id.indexOf('&');
-	if(ampersandPosition != -1) {
-  		video_id = video_id.substring(0, ampersandPosition);
-	}
-	return video_id
-}
-
-/* Opens a random video at a random time given 
-   its duration from the selection given 
-*/
-function opensRandomVideo(){
-	var links = appendLinksToArray();
-	var singleLink = getRandomLink(links);
-	var video_id = getVid_ID(singleLink);
-
-    getDuration(video_id,
-		function(duration){
-			var randomLinkCreated = appendTimeToURL(singleLink,duration);
-			var randomLinkID = getVid_ID(randomLinkCreated);
-
-			document.getElementById("iframe_id").src = "https://www.youtube.com/embed/" + randomLinkID + "?autoplay=1";
-			var iframesrc = document.getElementById("iframe_id").src;
-			document.getElementById("demo").innerHTML = iframesrc;
+	/*
+	  Gets video ID and returns video ID
+	*/
+	function getVid_ID(singleLink){
+		var video_id = singleLink.split('v=')[1];
+		var ampersandPosition = video_id.indexOf('&');
+		if(ampersandPosition != -1) {
+		  video_id = video_id.substring(0, ampersandPosition);
 		}
-	 );
-}
+		return video_id;
+	}
+
+	/*Splits the textbox input into individual links and append
+	  input onto a new array, it only takes the ID of video
+	  Return: An array filled with video links*/
+	function appendLinksToArray(){
+		var links = Array();
+		var str = document.getElementById("textarea_id").value;
+		console.log(str);
+		var res = str.split("\n");
+		for(var i = 0; i < res.length; i++){
+			if(res[i] != ""){
+				links.push(res[i]);
+			}
+		}
+		return links;
+	}
+
+		/*
+		Used in finalized button. It will remove links that
+		are duplicated 
+	*/
+	function removeDuplicates(){
+		var duplicableLinks = appendLinksToArray();
+		var uniqueLinks = Array();
+		$.each(duplicableLinks, function(i, el){
+		    if($.inArray(el, uniqueLinks) === -1) uniqueLinks.push(el);
+		});
+
+		var textarea_output = "";
+		for(var i = 0; i < uniqueLinks.length; i++){
+			textarea_output += uniqueLinks[i] + '\n';
+		}
+		document.getElementById("textarea_id").value = textarea_output;
+		document.getElementById("generateLink").style.display = "block";
+		return uniqueLinks;
+	}
+
+	/* Opens a random video at a random time given 
+	   its duration from the selection given 
+	*/
+	function openRandomVideo(){
+		var arrayLink = appendLinksToArray();
+		console.log(arrayLink);
+		var singleLink = getRandomLink(arrayLink);
+		var video_id = getVid_ID(singleLink);
+
+	    getDetails(video_id,
+			function(duration){
+				var randomLinkCreated = appendTimeToURL(singleLink,duration);
+				document.getElementById("iframe_id").src = "http://www.youtube.com/embed/" + video_id + "?autoplay=1";
+				var iframesrc = document.getElementById("iframe_id").src;
+				document.getElementById("demo").innerHTML = iframesrc;
+			}
+
+		 );
+	}
 </script>
 
 
 <textarea id="textarea_id" rows="4" cols="50">Input Youtube Link</textarea>
-<button onclick="opensRandomVideo()">Submit Link</button>
+<button onclick="removeDuplicates()">Finalize</button>
+<button style="display:none" id="generateLink" onclick="openRandomVideo()">Generate Random Video</button>
+<p>When Finalize button is clicked, it will parse in all the links and remove any duplicates</p>
 <p id="demo"></p>
 <iframe id="iframe_id" src="https://www.youtube.com/embed/GRonxog5mbw?autoplay=1">
   <p>Your browser does not support iframes.</p>
