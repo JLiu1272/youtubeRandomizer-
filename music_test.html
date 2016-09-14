@@ -8,48 +8,61 @@
 </head>
 <body>
 
-<textarea id="textarea_id" rows="4" cols="50">Input Youtube Link</textarea>
-
-<button onclick="myFunction()">Submit Link</button>
-
-<p id="demo"></p>
-
 <script>
-var w = null;
-function myFunction(){
-	if(w == null){
-		w = window.open("",'customName','width=5,height=5');
-	}
+/*Splits the textbox input into individual links and append
+  input onto a new array
+  Return: An array filled with video links*/
+function appendLinksToArray(){
 	var links = Array();
 	var str = document.getElementById("textarea_id").value;
 	var res = str.split("\n");
 	for(var i = 0; i < res.length; i++){
+		if()
 		links.push(res[i]);
 	}
-	var singleLink = getRandomLink(links);
+	return links;
+}
+
+/*
+  Gets video ID and returns video ID
+*/
+function getVid_ID(singleLink){
 	var video_id = singleLink.split('v=')[1];
 	var ampersandPosition = video_id.indexOf('&');
 	if(ampersandPosition != -1) {
   		video_id = video_id.substring(0, ampersandPosition);
 	}
-
-	var totalDuration = getDuration(video_id,
-		function(duration){
-			var openLink = appendTimeToURL(singleLink,duration);
-			window.open(openLink,'_blank');
-		}
-	)
+	return video_id
 }
-/*function myFunction() {
-	var links = Array();
-	var inputLines = document.getElementById('textareaId').val().split('\n');
-	for(var i = 0; i < inputLines.length; i++){
-		links.push(inputLines[i]);
-	}
-	alert(inputLines);
-}*/
+
+/* Opens a random video at a random time given 
+   its duration from the selection given 
+*/
+function opensRandomVideo(){
+	var links = appendLinksToArray();
+	var singleLink = getRandomLink(links);
+	var video_id = getVid_ID(singleLink);
+
+    getDuration(video_id,
+		function(duration){
+			var randomLinkCreated = appendTimeToURL(singleLink,duration);
+			var randomLinkID = getVid_ID(randomLinkCreated);
+
+			document.getElementById("iframe_id").src = "https://www.youtube.com/embed/" + randomLinkID + "?autoplay=1";
+			var iframesrc = document.getElementById("iframe_id").src;
+			document.getElementById("demo").innerHTML = iframesrc;
+		}
+	 );
+}
 </script>
-<iframe width="560" height="315" style="display:none;" src="http://www.youtube.com/embed/GRonxog5mbw?autoplay=1" frameborder="0" allowfullscreen></iframe>​
+
+<textarea id="textarea_id" rows="4" cols="50">Input Youtube Link</textarea>
+<button onclick="opensRandomVideo()">Submit Link</button>
+<p id="demo"></p>
+<iframe id="iframe_id" src="https://www.youtube.com/embed/GRonxog5mbw?autoplay=1">
+  <p>Your browser does not support iframes.</p>
+</iframe>
+
 
 </body>
 </html>
