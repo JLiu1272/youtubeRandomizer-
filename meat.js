@@ -29,8 +29,10 @@ document.addEventListener('DOMContentLoaded', function() {
 /*
 callback to get duration of video by providing video id. 
 It calls back with the duration of the video in seconds
+@Deprecated
 */
 function getDuration(videoID,callBack){
+  console.warn("USING DEPRECATED FUNCTION, USE getDetails instead");
 $.ajax({
   url: "https://www.googleapis.com/youtube/v3/videos?id="+videoID+"&fields=items(snippet(title),contentDetails(duration))&part=contentDetails,snippet&key="+applicationID,
   
@@ -41,6 +43,43 @@ $.ajax({
   callBack(durationInSeconds);
 });
 }
+
+
+/*
+gets details which include duration of video in seconds, 
+and title of video. 
+the callback is fired once the request is complete. 
+
+It contains an object 
+var details = {
+      duration: durationInSeconds,
+      title: videoTitle
+    };
+    
+*/
+function getDetails(videoID,callBack){
+$.ajax({
+  url: "https://www.googleapis.com/youtube/v3/videos?id="+videoID+"&fields=items(snippet(title),contentDetails(duration))&part=contentDetails,snippet&key="+applicationID,
+  
+}).done(function(data) {
+  // alert("respone  "+data.items[0].contentDetails.duration);
+  var unFormattedDuration = data.items[0].contentDetails.duration;
+  var durationInSeconds = moment.duration(unFormattedDuration).asSeconds();
+  var videoTitle = data.items[0].snippet.title;
+
+    var details = {
+      duration: durationInSeconds,
+      title: videoTitle
+    };
+
+  console.log(details);
+  callBack(details);
+});
+}
+
+
+
+
 
 /*
 returns url that appends a random time, based on the length of the video.
