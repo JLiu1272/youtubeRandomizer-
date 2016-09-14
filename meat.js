@@ -23,7 +23,8 @@ document.addEventListener('DOMContentLoaded', function() {
     	// alert(duration);
     })
 }, false);
-
+// https://www.googleapis.com/youtube/v3/videos?id=9bZkp7q19f0&
+// part=contentDetails,snippet&key=AIzaSyA0rqYpyxLJJxVBQpiMK2AVachABWYo3WE&fields=items(snippet(title),contentDetails(duration))
 
 /*
 callback to get duration of video by providing video id. 
@@ -31,7 +32,7 @@ It calls back with the duration of the video in seconds
 */
 function getDuration(videoID,callBack){
 $.ajax({
-  url: "https://www.googleapis.com/youtube/v3/videos?id="+videoID+"&part=contentDetails&key="+applicationID,
+  url: "https://www.googleapis.com/youtube/v3/videos?id="+videoID+"&fields=items(snippet(title),contentDetails(duration))&part=contentDetails,snippet&key="+applicationID,
   
 }).done(function(data) {
   // alert("respone  "+data.items[0].contentDetails.duration);
