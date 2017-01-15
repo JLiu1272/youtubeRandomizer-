@@ -77,6 +77,23 @@ $.ajax({
 });
 }
 
+function getTitle(videoID,callBack){
+  $.ajax({
+    url: "https://www.googleapis.com/youtube/v3/videos?id="+videoID+"&fields=items(snippet(title),contentDetails(duration))&part=contentDetails,snippet&key="+applicationID,
+    
+  }).done(function(data) {
+    // alert("respone  "+data.items[0].contentDetails.duration);
+    var videoTitle = data.items[0].snippet.title;
+
+      var details = {
+        title: videoTitle
+      };
+
+    console.log(details);
+    callBack(details);
+  });
+}
+
 
 
 
