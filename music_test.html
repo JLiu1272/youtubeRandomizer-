@@ -70,7 +70,7 @@
 				textarea_output += uniqueLinks[i] + '\n';
 			}
 			document.getElementById("textarea_id").value = textarea_output;
-			document.getElementById("generateLink").style.display = "block";
+			//document.getElementById("generateLink").style.display = "block";
 			return uniqueLinks;
 		}
 
@@ -89,6 +89,7 @@
 					document.getElementById("iframe_id").src = randomLinkCreated;
 					var iframesrc = document.getElementById("iframe_id").src;
 					document.getElementById("demo").innerHTML = iframesrc;
+
 				}
 				//https://youtu.be/GRonxog5mbw?t=3<iframe width="300" height="150" src="https://www.youtube.com/embed/GRonxog5mbw" frameborder="0" allowfullscreen></iframe>
 
@@ -99,10 +100,10 @@
 		 * Appending Multiple Choice options 
 		 */
 		function appendChoice(){
-			var list = document.createElement("li");
-			
-
-
+			var linksArr = appendLinksToArray();
+			for(var i=0; i< linksArr.length; i++){
+				var list = document.createElement("li");
+			}
 		} 
 
 	</script>
@@ -147,6 +148,13 @@
 	      </div>
 	    </form>
     </div>
+
+    <div class="container">
+	    <iframe id="iframe_id" src="https://www.youtube.com/embed/qUuvTpU0hWE?start=29&autoplay=1">
+		  <p>Your browser does not support iframes.</p>
+		</iframe>
+		<p id="demo"></p>
+	</div>
 
 	<!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
